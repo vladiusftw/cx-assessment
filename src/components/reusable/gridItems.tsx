@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 type Props = {
   hide: boolean;
@@ -50,36 +51,45 @@ const GridItems = (props: Props) => {
       >
         {items.map((item: any, index: number) => {
           return (
-            <motion.a
-              variants={listItem}
-              href={"/shop"}
-              className="relative flex py-4 flex-col items-center drop-shadow-lg rounded-[5px] bg-[#E2E2EA]"
+            <Link
+              to={{
+                pathname: `/shop/${item?.category}/${item?.title}`,
+                search: `?id=${item?.id}`,
+              }}
             >
-              <motion.button
-                initial={{ scale: 1, backgroundColor: "white" }}
-                whileHover={{ scale: 1.4, backgroundColor: "black" }}
-                className={` ${
-                  props?.hide ? "hidden" : "block"
-                } z-10 absolute right-[5%] bg-white w-[40px] h-[40px] flex flex-col items-center justify-center rounded-[50px] `}
+              <motion.div
+                variants={listItem}
+                className="relative flex py-4 flex-col items-center drop-shadow-lg rounded-[5px] bg-[#E2E2EA]"
               >
-                <img src={"/heart-orange.png"} className="w-[24px] h-[24px]" />
-              </motion.button>
-              <img
-                src={item?.image}
-                alt=""
-                className=" object-contain mix-blend-multiply w-[296px] h-[296px] mb-6"
-              />
-              <p className=" text-[14px] text-[#F3692E] capitalize ">
-                {item?.category}
-              </p>
-              <p className=" max-w-[300px] text-[24px] font-bold text-center line-clamp-1">
-                {item?.title}
-              </p>
-              <p className=" text-[12px]">{item?.category}</p>
-              <p className=" text-[24px] font-bold text-[#F3692E]">
-                ${item?.price}
-              </p>
-            </motion.a>
+                <motion.button
+                  initial={{ scale: 1, backgroundColor: "white" }}
+                  whileHover={{ scale: 1.4, backgroundColor: "black" }}
+                  className={` ${
+                    props?.hide ? "hidden" : "block"
+                  } z-10 absolute right-[5%] bg-white w-[40px] h-[40px] flex flex-col items-center justify-center rounded-[50px] `}
+                >
+                  <img
+                    src={"/heart-orange.png"}
+                    className="w-[24px] h-[24px]"
+                  />
+                </motion.button>
+                <img
+                  src={item?.image}
+                  alt=""
+                  className=" object-contain mix-blend-multiply w-[296px] h-[296px] mb-6"
+                />
+                <p className=" text-[14px] text-[#F3692E] capitalize ">
+                  {item?.category}
+                </p>
+                <p className=" max-w-[300px] text-[24px] font-bold text-center line-clamp-1">
+                  {item?.title}
+                </p>
+                <p className=" text-[12px]">{item?.category}</p>
+                <p className=" text-[24px] font-bold text-[#F3692E]">
+                  ${item?.price}
+                </p>
+              </motion.div>
+            </Link>
           );
         })}
       </motion.div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../components/reusable/hero";
 import { parent } from "../components/reusable/shareable";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -10,7 +10,8 @@ type Props = {};
 
 const ProductDetail = (props: Props) => {
   const { category, product_title }: any = useParams();
-  const { id }: any = useSearchParams();
+  const [searchParams, setSearchParams]: any = useSearchParams();
+
   return (
     <div className="md:pb-52 pb-24">
       <div className={parent}>
@@ -32,7 +33,7 @@ const ProductDetail = (props: Props) => {
         />
       </div>
       <div className={parent}>
-        <Main item_id={id} />
+        <Main item_id={searchParams.get("id")} />
       </div>
       <div className={parent}>
         <Info />

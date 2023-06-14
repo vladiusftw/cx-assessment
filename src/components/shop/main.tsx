@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -198,43 +199,56 @@ const Main = (props: Props) => {
               {currItems &&
                 currItems.slice(0, 9).map((item: any, index: number) => {
                   return (
-                    <motion.a
-                      key={`${item.id}${search}}`}
-                      initial={{
-                        opacity: 0,
-                        translateX: -100,
-                        translateY: -100,
+                    <Link
+                      to={{
+                        pathname: `/shop/${item?.category}/${item?.title}`,
+                        search: `?id=${item?.id}`,
                       }}
-                      animate={{ opacity: 1, translateX: 0, translateY: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="relative flex py-4 flex-col items-center drop-shadow-lg rounded-[5px] bg-[#E2E2EA]"
                     >
-                      <motion.button
-                        initial={{ scale: 1, backgroundColor: "white" }}
-                        whileHover={{ scale: 1.4, backgroundColor: "black" }}
-                        className=" z-10 absolute right-[5%] bg-white w-[40px] h-[40px] flex flex-col items-center justify-center rounded-[50px] "
+                      <motion.div
+                        key={`${item.id}${search}}`}
+                        initial={{
+                          opacity: 0,
+                          translateX: -100,
+                          translateY: -100,
+                        }}
+                        animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="relative flex py-4 flex-col items-center drop-shadow-lg rounded-[5px] bg-[#E2E2EA]"
                       >
+                        <motion.button
+                          initial={{
+                            scale: 1,
+                            backgroundColor: "rgba(255,255,255,1)",
+                          }}
+                          whileHover={{
+                            scale: 1.4,
+                            backgroundColor: "rgba(0,0,0,1)",
+                          }}
+                          className=" z-10 absolute right-[5%] bg-white w-[40px] h-[40px] flex flex-col items-center justify-center rounded-[50px] "
+                        >
+                          <img
+                            src={"/heart-orange.png"}
+                            className="w-[24px] h-[24px]"
+                          />
+                        </motion.button>
                         <img
-                          src={"/heart-orange.png"}
-                          className="w-[24px] h-[24px]"
+                          src={item?.image}
+                          alt=""
+                          className=" object-contain mix-blend-multiply w-[296px] h-[296px] mb-6"
                         />
-                      </motion.button>
-                      <img
-                        src={item?.image}
-                        alt=""
-                        className=" object-contain mix-blend-multiply w-[296px] h-[296px] mb-6"
-                      />
-                      <p className=" text-[14px] text-[#F3692E] capitalize ">
-                        {item?.category}
-                      </p>
-                      <p className=" max-w-[300px] text-[24px] font-bold text-center line-clamp-1">
-                        {item?.title}
-                      </p>
-                      <p className=" text-[12px]">{item?.category}</p>
-                      <p className=" text-[24px] font-bold text-[#F3692E]">
-                        ${item?.price}
-                      </p>
-                    </motion.a>
+                        <p className=" text-[14px] text-[#F3692E] capitalize ">
+                          {item?.category}
+                        </p>
+                        <p className=" max-w-[300px] text-[24px] font-bold text-center line-clamp-1">
+                          {item?.title}
+                        </p>
+                        <p className=" text-[12px]">{item?.category}</p>
+                        <p className=" text-[24px] font-bold text-[#F3692E]">
+                          ${item?.price}
+                        </p>
+                      </motion.div>
+                    </Link>
                   );
                 })}
             </div>
