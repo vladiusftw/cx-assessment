@@ -3,22 +3,13 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type Props = {
-  item_id: string;
+  item: any;
 };
 
 const Main = (props: Props) => {
-  const [item, setItem] = useState<any>();
+  const {item} = props;
 
-  useEffect(() => {
-    console.log(props?.item_id);
-
-    axios
-      .get(`https://fakestoreapi.com/products/${props?.item_id}`)
-      .then((res) => {
-        setItem(res?.data);
-        console.log(res.data);
-      });
-  }, []);
+  
   return (
     <motion.div
       initial={{ translateX: -100, translateY: -100, opacity: 0 }}

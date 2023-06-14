@@ -8,7 +8,8 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 type Props = {};
 
@@ -18,6 +19,13 @@ const Header = (props: any) => {
   const { scrollY } = useScroll();
   const [isScrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const [cartItems, setCartItems] = useState<any>(0);
+
+  useEffect(() => {
+    axios.get("https://fakestoreapi.com/carts/1").then((res) => {
+      setCartItems(res?.data?.products?.length);
+    });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(-1000, -1000);
@@ -136,7 +144,9 @@ const Header = (props: any) => {
               <p>+022 319 821 967</p>
             </div>
             <div className="flex flex-col items-center justify-center">
-              <img src={"/logo.png"} className=" w-[166.58px] h-[32.63px]" />
+              <Link to={{ pathname: "/" }}>
+                <img src={"/logo.png"} className=" w-[166.58px] h-[32.63px]" />
+              </Link>
             </div>
             <div className=" flex flex-col items-end">
               <div className="flex justify-between gap-4">
@@ -168,7 +178,18 @@ const Header = (props: any) => {
             </div>
             <div className="flex flex-row gap-6">
               <img src={"/heart.png"} className=" w-[32px] h-[32px]" />
-              <img src={"/cart.png"} className=" w-[32px] h-[32px]" />
+              <Link to={{ pathname: "/cart" }} className="relative">
+                <img src={"/cart.png"} className=" w-[32px] h-[32px]" />
+                <div
+                  className={` absolute top-[-10px] right-[-10px] w-[24px] h-[24px] rounded-[50px] flex flex-col items-center justify-center ${
+                    isScrolled
+                      ? "bg-white text-[#F3692E]"
+                      : "bg-[#F3692E] text-white"
+                  } `}
+                >
+                  {cartItems}
+                </div>
+              </Link>
               <img src={"/profile.png"} className=" w-[32px] h-[32px]" />
             </div>
           </div>
@@ -181,14 +202,18 @@ const Header = (props: any) => {
             <Hamburger toggled={isOpen} toggle={setOpen} />
           </div>
           <div className="flex flex-col items-center justify-center">
-            <img
-              src={"/logo.png"}
-              className=" w-[166.58px] h-[32.63px] object-contain"
-            />
+            <Link to={{ pathname: "/" }}>
+              <img
+                src={"/logo.png"}
+                className=" w-[166.58px] h-[32.63px] object-contain"
+              />
+            </Link>
           </div>
           <div className="absolute right-0 flex  justify-start gap-2">
             <div className="mt-1">
-              <img src={"/cart.png"} className=" w-[32px] h-[32px]" />
+              <Link to={{ pathname: "/cart" }}>
+                <img src={"/cart.png"} className=" w-[32px] h-[32px]" />
+              </Link>
             </div>
             <div>
               <button

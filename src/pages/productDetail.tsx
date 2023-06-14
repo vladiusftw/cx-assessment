@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "../components/reusable/hero";
 import { parent } from "../components/reusable/shareable";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -6,13 +6,25 @@ import Main from "../components/productDetails/main";
 import Info from "../components/productDetails/info";
 import Reviews from "../components/reusable/reviews";
 import GridItems from "../components/reusable/gridItems";
+import axios from "axios";
 
 type Props = {};
 
 const ProductDetail = (props: Props) => {
   const { category, product_title }: any = useParams();
   const [searchParams, setSearchParams]: any = useSearchParams();
-
+  const [item, setItem] = useState<any>();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
+    axios
+      .get(`https://fakestoreapi.com/products/${searchParams.get("id")}`)
+      .then((res) => {
+        setItem(res?.data);
+        console.log(res.data);
+      });
+  }, []);
   return (
     <div className="md:pb-52 pb-24">
       <div className={parent}>
@@ -34,10 +46,10 @@ const ProductDetail = (props: Props) => {
         />
       </div>
       <div className={parent}>
-        <Main item_id={searchParams.get("id")} />
+        <Main item={item} />
       </div>
       <div className={parent}>
-        <Info />
+        <Info item={item} />
       </div>
       <div className={parent}>
         <Reviews />

@@ -40,3 +40,9 @@ code {
   height: 4px;
   background-color: #e0e0e0;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cart-item {
+    display: flex !important;
+  }
+}

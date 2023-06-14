@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../components/reusable/hero";
 import Main from "../components/shop/main";
 import GridItems from "../components/reusable/gridItems";
@@ -7,6 +7,9 @@ import { parent } from "../components/reusable/shareable";
 type Props = {};
 
 const Shop = (props: Props) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="md:pb-52 pb-24">
       <div className="md:pt-40 pt-24 flex flex-col w-[100%]">

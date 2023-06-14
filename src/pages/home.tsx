@@ -10,6 +10,9 @@ import { parent } from "../components/reusable/shareable";
 type Props = {};
 
 const Home = (props: Props) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="md:pb-52 pb-24">
       <div className={parent}>
