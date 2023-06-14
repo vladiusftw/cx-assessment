@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import Home from "./pages/home";
+import Shop from "./pages/shop";
+import ProductDetail from "./pages/productDetail";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,6 +17,11 @@ root.render(
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route
+          path="/shop/:category/:product_title"
+          element={<ProductDetail />}
+        />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -38,7 +38,9 @@ const Categories = (props: Props) => {
         {categories.map((item: any, index: any) => {
           return (
             <motion.a
+              key={index}
               variants={categoriesListItem}
+              href={"/shop"}
               className="h-[560px] bg-[#E2E2EA] px-8 flex flex-col gap-4 justify-end pb-8"
             >
               <p className="text-[48px] capitalize font-bold">{item}</p>
@@ -46,17 +48,18 @@ const Categories = (props: Props) => {
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry.
               </p>
-              <motion.button
+              <motion.a
                 initial={{ scale: 1 }}
                 whileHover={{ scale: 1.4 }}
                 transition={{ duration: 0.2, stiffness: 2 }}
+                href={"/shop"}
                 className=" w-[40px] h-[40px] flex flex-col items-center justify-center rounded-[28px] bg-[#F86338] "
               >
                 <img
                   src={"/right-arrow-line.png"}
                   className=" w-[24px] h-[24px]"
                 />
-              </motion.button>
+              </motion.a>
             </motion.a>
           );
         })}

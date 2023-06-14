@@ -15,10 +15,13 @@ const Hero = (props: Props) => {
           We will help to develop every smallest thing into a big one for your
           company.
         </p>
-        <button className="max-w-[120px] bg-[#F86338] flex items-center justify-center py-4 rounded-[8px] text-white">
+        <a
+          href="/shop"
+          className="max-w-[120px] bg-[#F86338] flex items-center justify-center py-4 rounded-[8px] text-white"
+        >
           <p>Shop</p>
           <img src={"/right-arrow.png"} className="w-[24px] h-[24px]" />
-        </button>
+        </a>
       </div>
 
       <div className="flex gap-4 lg:absolute right-0 md:mt-0 mt-4">

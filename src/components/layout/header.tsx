@@ -208,6 +208,7 @@ const Header = (props: any) => {
                     {socials.map((item: any, index: number) => {
                       return (
                         <motion.div
+                          key={index}
                           variants={SocialslistItem}
                           className=" bg-[#F86338] w-[40px] h-[40px] border-[1px] mt-4 border-black rounded-[50px] flex flex-col items-center justify-center"
                         >
