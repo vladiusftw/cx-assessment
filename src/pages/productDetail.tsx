@@ -5,6 +5,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import Main from "../components/productDetails/main";
 import Info from "../components/productDetails/info";
 import Reviews from "../components/reusable/reviews";
+import GridItems from "../components/reusable/gridItems";
 
 type Props = {};
 
@@ -40,6 +41,9 @@ const ProductDetail = (props: Props) => {
       </div>
       <div className={parent}>
         <Reviews />
+      </div>
+      <div className={parent}>
+        <GridItems title="Related Items" hide={false} limit={4} />
       </div>
     </div>
   );
